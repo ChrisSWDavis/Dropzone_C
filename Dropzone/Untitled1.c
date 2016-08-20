@@ -6,7 +6,7 @@ int energy = 10;
 
 int armour = 9;
 
-int N = 1;
+int N = 2;
 
 int D = 6;
 
@@ -20,16 +20,19 @@ int DamageFromDice(int roll)
 {
     if(rollneeded()>roll)
     {
+        //printf("roll for 0 damage is %d\n", roll);
         return 0;
     }
     else if(rollneeded()<=roll)
     {
         if(roll>=rollneeded()+2)
         {
+            //printf("roll for 2 damage is %d\n", roll);
             return 2;
         }
         else
         {
+            //printf("roll for 1 damage is %d\n", roll);
             return 1;
         }
     }
@@ -44,11 +47,13 @@ int storecombos(int *array, int iteration, int damage)
         {
             damage = DamageFromDice(i) + damage;
             storecombos(array, iteration+1,damage);
+            damage = 0;
         }
     }
     else
     {
         array[damage]++;
+        damage = 0;
     }
     return 0;
 }
@@ -64,7 +69,7 @@ int countcombos(int *array)
 int main()
 {
 
-     /*test function*/ printf("damage is %d\n", DamageFromDice(6));
+    // /*test function*/ printf("damage is %d\n", DamageFromDice(6));
 
     int *array;
     array = (int *)calloc((N*2+1), sizeof(int));
@@ -72,7 +77,6 @@ int main()
     int i;
     for(i=0;i<=N*2;i++)
     {
-        printf("damage from %d = %d\n", i, DamageFromDice(i));
         printf("number of %ds = %d\n", i, array[i]);
     }
 
