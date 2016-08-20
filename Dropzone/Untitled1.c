@@ -6,7 +6,7 @@ int energy = 10;
 
 int armour = 9;
 
-int N = 8;
+int N = 3;
 
 int D = 6;
 
@@ -76,7 +76,7 @@ int main()
     int i;
     for(i=0;i<=N*2;i++)
     {
-        printf("number of %ds = %d\n", i, array[i]);
+        printf("probability of %d = %lf\n", i, ((double)array[i])/pow(6,N));
     }
 
     return 0;
