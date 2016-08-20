@@ -6,7 +6,7 @@ int energy = 10;
 
 int armour = 9;
 
-int N = 2;
+int N = 8;
 
 int D = 6;
 
@@ -41,19 +41,18 @@ int DamageFromDice(int roll)
 int storecombos(int *array, int iteration, int damage)
 {
     int i;
+    int newdamage;
     if(iteration<=N)
     {
         for(i = 1;i<=D;i++)
         {
-            damage = DamageFromDice(i) + damage;
-            storecombos(array, iteration+1,damage);
-            damage = 0;
+            newdamage = DamageFromDice(i) + damage;
+            storecombos(array, iteration+1,newdamage);
         }
     }
     else
     {
         array[damage]++;
-        damage = 0;
     }
     return 0;
 }
